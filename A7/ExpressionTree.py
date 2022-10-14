@@ -51,21 +51,33 @@ class Tree (object):
     # this function takes in the input string expr and 
     # creates the expression tree
     def create_tree (self, expr):
-    
+        treeStack = Stack()
+        currentNode = self.root
+        for chr in expr:
+            if chr == "(": #1
+                currentNode.lChild = Node(chr)
+                treeStack.push(currentNode)
+                currentNode = currentNode.lChild
+            elif chr in operators: #2
+                currentNode.data = chr
+                treeStack.push(currentNode)
+                currentNode.rChild = Node()
+                currentNode = currentNode.rChild
+
     # this function should evaluate the tree's expression
     # returns the value of the expression after being calculated
     def evaluate (self, aNode):
-    
+        pass
     # this function should generate the preorder notation of 
     # the tree's expression
     # returns a string of the expression written in preorder notation
     def pre_order (self, aNode):
-
+        pass
     # this function should generate the postorder notation of 
     # the tree's expression
     # returns a string of the expression written in postorder notation
     def post_order (self, aNode):
-
+        pass
 # you should NOT need to touch main, everything should be handled for you
 def main():
     # read infix expression
