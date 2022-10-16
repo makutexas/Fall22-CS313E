@@ -1,22 +1,22 @@
 #  File: ExpressionTree.py
 
-#  Description:
+#  Description: ExpressionTree.py creates a binary tree from an infix expression and evaluates the expression. Also can print prefix and post fix expressions. 
 
-#  Student Name:
+#  Student Name: Mark Chao  
 
-#  Student UT EID:
+#  Student UT EID: mc72239
 
-#  Partner Name:
+#  Partner Name: Ben Ton-That
 
-#  Partner UT EID:
+#  Partner UT EID: bbt426
 
 #  Course Name: CS 313E
 
-#  Unique Number: 
+#  Unique Number: 52520
 
-#  Date Created:
+#  Date Created: 10/13/2022
 
-#  Date Last Modified:
+#  Date Last Modified: 10/16/2022
 
 import sys
 
