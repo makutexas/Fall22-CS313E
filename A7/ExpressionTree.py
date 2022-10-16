@@ -51,25 +51,25 @@ class Tree (object):
     # this function takes in the input string expr and 
     # creates the expression tree
     def create_tree (self, expr):
-        treeStack = Stack()
+        nodeStack = Stack()
         self.root = Node()
         currentNode = self.root
         for chr in expr:
             if chr == "(": #1
                 currentNode.lChild = Node(chr)
-                treeStack.push(currentNode)
+                nodeStack.push(currentNode)
                 currentNode = currentNode.lChild
             elif chr in operators: #2
                 currentNode.data = chr
-                treeStack.push(currentNode)
+                nodeStack.push(currentNode)
                 currentNode.rChild = Node()
                 currentNode = currentNode.rChild
-            elif chr == ")":
-                if treeStack.is_empty() == False:
-                    currentNode = treeStack.pop()
-            else:
+            elif chr == ")": #4
+                if nodeStack.is_empty() == False:
+                    currentNode = nodeStack.pop()
+            else: #3
                 currentNode.data = chr
-                currentNode = treeStack.pop()
+                currentNode = nodeStack.pop()
                 
     # this function should evaluate the tree's expression
     # returns the value of the expression after being calculated
