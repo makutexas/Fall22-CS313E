@@ -52,6 +52,7 @@ class Tree (object):
     # creates the expression tree
     def create_tree (self, expr):
         treeStack = Stack()
+        self.root = Node()
         currentNode = self.root
         for chr in expr:
             if chr == "(": #1
@@ -63,11 +64,33 @@ class Tree (object):
                 treeStack.push(currentNode)
                 currentNode.rChild = Node()
                 currentNode = currentNode.rChild
-
+            elif chr == ")":
+                if treeStack.is_empty() == False:
+                    currentNode = treeStack.pop()
+            else:
+                currentNode.data = chr
+                currentNode = treeStack.pop()
+                
     # this function should evaluate the tree's expression
     # returns the value of the expression after being calculated
     def evaluate (self, aNode):
-        pass
+        if aNode.data in operators:
+            if aNode.data == "+":
+                return self.evaluate(aNode.lChild) + self.evaluate(aNode.rChild)
+            elif aNode.data == "-":
+                return self.evaluate(aNode.lChild) - self.evaluate(aNode.rChild)
+            elif aNode.data == "*":
+                return self.evaluate(aNode.lChild) * self.evaluate(aNode.rChild)
+            elif aNode.data == "/":
+                return self.evaluate(aNode.lChild) / self.evaluate(aNode.rChild)
+            elif aNode.data == "//":
+                return self.evaluate(aNode.lChild) // self.evaluate(aNode.rChild)
+            elif aNode.data == "%":
+                return self.evaluate(aNode.lChild) % self.evaluate(aNode.rChild)
+            elif aNode.data == "**":
+                return self.evaluate(aNode.lChild) ** self.evaluate(aNode.rChild)
+        else:
+            return float(aNode.data)
     # this function should generate the preorder notation of 
     # the tree's expression
     # returns a string of the expression written in preorder notation
@@ -81,9 +104,11 @@ class Tree (object):
 # you should NOT need to touch main, everything should be handled for you
 def main():
     # read infix expression
-    line = sys.stdin.readline()
-    expr = line.strip()
- 
+    # line = sys.stdin.readline()
+    # expr = line.strip()
+    
+    expr = "((8+3)*(7-2))" #REMOVE THIS LINE WHEN DONE TESTING
+
     tree = Tree()
     tree.create_tree(expr)
     
