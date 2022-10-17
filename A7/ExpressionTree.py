@@ -99,7 +99,8 @@ class Tree (object):
     # returns a string of the expression written in preorder notation
     def pre_order (self, aNode):
         if (aNode != None): 
-            print(aNode.data, end = "" if None == None else "space")
+            print(end = " ")
+            print(aNode.data, end = "")
             self.pre_order(aNode.lChild)
             self.pre_order(aNode.rChild)
 
@@ -110,7 +111,7 @@ class Tree (object):
         if (aNode != None): 
             self.post_order(aNode.lChild)
             self.post_order(aNode.rChild)
-            print(aNode.data, end = "" if aNode == self.root else "space")
+            print(aNode.data, end = "" if aNode == self.root else " ")
 
 # you should NOT need to touch main, everything should be handled for you
 def main():
@@ -125,7 +126,7 @@ def main():
     print(expr, "=", str(tree.evaluate(tree.root)))
 
     # get the prefix version of the expression and print
-    print("Prefix Expression:", end = " ")
+    print("Prefix Expression:", end = "")
     tree.pre_order(tree.root)
     # # get the postfix version of the expression and print
     print("\nPostfix Expression:", end = " ")
