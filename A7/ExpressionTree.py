@@ -18,6 +18,7 @@
 
 #  Date Last Modified: 10/16/2022
 
+from platform import node
 import sys
 
 operators = ['+', '-', '*', '/', '//', '%', '**']
@@ -51,25 +52,26 @@ class Tree (object):
     # this function takes in the input string expr and 
     # creates the expression tree
     def create_tree (self, expr):
+        expr_list = expr.split()
         nodeStack = Stack()
         self.root = Node()
         currentNode = self.root
-        for chr in expr:
-            if chr != " ":
-                if chr == "(": #1
-                    currentNode.lChild = Node(chr)
-                    nodeStack.push(currentNode)
-                    currentNode = currentNode.lChild
-                elif chr in operators: #2
-                    currentNode.data = chr
-                    nodeStack.push(currentNode)
-                    currentNode.rChild = Node()
-                    currentNode = currentNode.rChild
-                elif chr == ")": #4
-                    if nodeStack.is_empty() == False:
-                        currentNode = nodeStack.pop()
-                else: #3
-                    currentNode.data = chr
+        for chr in expr_list:
+            if chr == "(": #1
+                currentNode.lChild = Node(chr)
+                nodeStack.push(currentNode)
+                currentNode = currentNode.lChild
+            elif chr in operators: #2
+                currentNode.data = chr
+                nodeStack.push(currentNode)
+                currentNode.rChild = Node()
+                currentNode = currentNode.rChild
+            elif chr == ")": #4
+                if nodeStack.is_empty() == False:
+                    currentNode = nodeStack.pop()
+            else: #3
+                currentNode.data = chr
+                if nodeStack.is_empty() == False:
                     currentNode = nodeStack.pop()
                 
     # this function should evaluate the tree's expression
@@ -98,7 +100,7 @@ class Tree (object):
     # returns a string of the expression written in preorder notation
     def pre_order (self, aNode):
         if (aNode != None): 
-            print(aNode.data, end = "")
+            print(aNode.data, end = " ")
             self.pre_order(aNode.lChild)
             self.pre_order(aNode.rChild)
 
