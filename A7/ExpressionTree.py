@@ -91,6 +91,7 @@ class Tree (object):
                 return self.evaluate(aNode.lChild) ** self.evaluate(aNode.rChild)
         else:
             return float(aNode.data)
+            
     # this function should generate the preorder notation of 
     # the tree's expression
     # returns a string of the expression written in preorder notation
@@ -99,6 +100,7 @@ class Tree (object):
             print(aNode.data, end = " ") 
             self.pre_order(aNode.lChild)
             self.pre_order(aNode.rChild)
+
     # this function should generate the postorder notation of 
     # the tree's expression
     # returns a string of the expression written in postorder notation
@@ -107,13 +109,12 @@ class Tree (object):
             self.post_order(aNode.lChild)
             self.post_order(aNode.rChild)
             print(aNode.data, end = " ")
+
 # you should NOT need to touch main, everything should be handled for you
 def main():
-    # read infix expression
-    # line = sys.stdin.readline()
-    # expr = line.strip()
-    
-    expr = "((8+3)*(7-2))" #REMOVE THIS LINE WHEN DONE TESTING
+    read infix expression
+    line = sys.stdin.readline()
+    expr = line.strip()
 
     tree = Tree()
     tree.create_tree(expr)
