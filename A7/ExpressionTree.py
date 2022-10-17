@@ -91,7 +91,7 @@ class Tree (object):
                 return self.evaluate(aNode.lChild) ** self.evaluate(aNode.rChild)
         else:
             return float(aNode.data)
-            
+
     # this function should generate the preorder notation of 
     # the tree's expression
     # returns a string of the expression written in preorder notation
@@ -112,7 +112,7 @@ class Tree (object):
 
 # you should NOT need to touch main, everything should be handled for you
 def main():
-    read infix expression
+    #read infix expression
     line = sys.stdin.readline()
     expr = line.strip()
 
