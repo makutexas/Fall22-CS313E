@@ -55,21 +55,22 @@ class Tree (object):
         self.root = Node()
         currentNode = self.root
         for chr in expr:
-            if chr == "(": #1
-                currentNode.lChild = Node(chr)
-                nodeStack.push(currentNode)
-                currentNode = currentNode.lChild
-            elif chr in operators: #2
-                currentNode.data = chr
-                nodeStack.push(currentNode)
-                currentNode.rChild = Node()
-                currentNode = currentNode.rChild
-            elif chr == ")": #4
-                if nodeStack.is_empty() == False:
+            if chr != " ":
+                if chr == "(": #1
+                    currentNode.lChild = Node(chr)
+                    nodeStack.push(currentNode)
+                    currentNode = currentNode.lChild
+                elif chr in operators: #2
+                    currentNode.data = chr
+                    nodeStack.push(currentNode)
+                    currentNode.rChild = Node()
+                    currentNode = currentNode.rChild
+                elif chr == ")": #4
+                    if nodeStack.is_empty() == False:
+                        currentNode = nodeStack.pop()
+                else: #3
+                    currentNode.data = chr
                     currentNode = nodeStack.pop()
-            else: #3
-                currentNode.data = chr
-                currentNode = nodeStack.pop()
                 
     # this function should evaluate the tree's expression
     # returns the value of the expression after being calculated
@@ -97,7 +98,7 @@ class Tree (object):
     # returns a string of the expression written in preorder notation
     def pre_order (self, aNode):
         if (aNode != None): 
-            print(aNode.data, end = " ") 
+            print(aNode.data, end = "")
             self.pre_order(aNode.lChild)
             self.pre_order(aNode.rChild)
 
