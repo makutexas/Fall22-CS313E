@@ -18,7 +18,6 @@
 
 #  Date Last Modified: 10/16/2022
 
-from platform import node
 import sys
 
 operators = ['+', '-', '*', '/', '//', '%', '**']
@@ -100,7 +99,7 @@ class Tree (object):
     # returns a string of the expression written in preorder notation
     def pre_order (self, aNode):
         if (aNode != None): 
-            print(aNode.data, end = " ")
+            print(aNode.data, end = "" if None == None else "space")
             self.pre_order(aNode.lChild)
             self.pre_order(aNode.rChild)
 
@@ -111,7 +110,7 @@ class Tree (object):
         if (aNode != None): 
             self.post_order(aNode.lChild)
             self.post_order(aNode.rChild)
-            print(aNode.data, end = " ")
+            print(aNode.data, end = "" if aNode == self.root else "space")
 
 # you should NOT need to touch main, everything should be handled for you
 def main():
