@@ -95,12 +95,18 @@ class Tree (object):
     # the tree's expression
     # returns a string of the expression written in preorder notation
     def pre_order (self, aNode):
-        pass
+        if (aNode != None): 
+            print(aNode.data, end = " ") 
+            self.pre_order(aNode.lChild)
+            self.pre_order(aNode.rChild)
     # this function should generate the postorder notation of 
     # the tree's expression
     # returns a string of the expression written in postorder notation
     def post_order (self, aNode):
-        pass
+        if (aNode != None): 
+            self.post_order(aNode.lChild)
+            self.post_order(aNode.rChild)
+            print(aNode.data, end = " ") 
 # you should NOT need to touch main, everything should be handled for you
 def main():
     # read infix expression
@@ -116,10 +122,12 @@ def main():
     print(expr, "=", str(tree.evaluate(tree.root)))
 
     # get the prefix version of the expression and print
-    print("Prefix Expression:", tree.pre_order(tree.root).strip())
+    print("Prefix Expression:", end = " ")
+    print(tree.pre_order(tree.root))
 
-    # get the postfix version of the expression and print
-    print("Postfix Expression:", tree.post_order(tree.root).strip())
+    # # get the postfix version of the expression and print
+    print("Postfix Expression:", end = " ")
+    print(tree.post_order(tree.root))
 
 if __name__ == "__main__":
     main()
