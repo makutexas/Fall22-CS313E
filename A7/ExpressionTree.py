@@ -123,11 +123,10 @@ def main():
 
     # get the prefix version of the expression and print
     print("Prefix Expression:", end = " ")
-    print(tree.pre_order(tree.root))
-
+    tree.pre_order(tree.root)
     # # get the postfix version of the expression and print
-    print("Postfix Expression:", end = " ")
-    print(tree.post_order(tree.root))
+    print("\nPostfix Expression:", end = " ")
+    tree.post_order(tree.root)
 
 if __name__ == "__main__":
     main()
