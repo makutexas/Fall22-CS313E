@@ -106,7 +106,7 @@ class Tree (object):
         if (aNode != None): 
             self.post_order(aNode.lChild)
             self.post_order(aNode.rChild)
-            print(aNode.data, end = " ") 
+            print(aNode.data, end = " ")
 # you should NOT need to touch main, everything should be handled for you
 def main():
     # read infix expression
