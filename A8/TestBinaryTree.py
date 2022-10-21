@@ -16,7 +16,7 @@
 
 #  Date Created: 10/18/2022
 
-#  Date Last Modified: 10/18/2022
+#  Date Last Modified: 10/21/2022
 
 
 import sys
@@ -48,7 +48,6 @@ class Node (object):
             return 1 + self.rChild.get_height()
         else:
             return 1
-
 
 class Tree(object):
     # constructor
@@ -88,22 +87,43 @@ class Tree(object):
     # The range of values equals the maximum value in the binary search tree minus the minimum value.
     # If there is one value in the tree the range is 0. If the tree is empty the range is undefined.
     def range(self):
-
+        if self.root == None:
+            return None
+        elif self.root.lChild == None and self.root.rChild == None:
+            return 0
+        else:
+            min = self.root
+            max = self.root
+            while min.lChild != None:
+                min = min.lChild
+            while max.rChild != None:
+                max = max.rChild
+            return max.data - min.data
 
     # Returns a list of nodes at a given level from left to right
     def get_level(self, level):
-   
+        return self.get_level_helper(self.root, level)
+        pass
 
+    def get_level_helper(self, aNode, level):
+        if aNode == None:
+            return []
+        elif level == 1:
+            return [aNode.data]
+        elif level == (self.get_height() + 1 - aNode.get_height()): #Calculates level from height, and compares to desired level
+            return [aNode.data] + self.get_level_helper(aNode.lChild, level) + self.get_level_helper(aNode.rChild, level)
+        else:
+            return self.get_level_helper(aNode.lChild, level) + self.get_level_helper(aNode.rChild, level)
 
     # Returns the list of the node that you see from left side
     # The order of the output should be from top to down
     def left_side_view(self):
-
+        pass
 
     # returns the sum of the value of all leaves.
     # a leaf node does not have any children.
     def sum_leaf_nodes(self):
-  
+        pass
 
 
 
@@ -158,6 +178,8 @@ def main():
     print("Sum of leaf nodes is: ", t3.sum_leaf_nodes())
     print("##########################")
 
+    print(t2.root.get_height())
+    print(t2.get_level(4))
 
 if __name__ == "__main__":
     main()
