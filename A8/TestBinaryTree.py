@@ -18,9 +18,7 @@
 
 #  Date Last Modified: 10/21/2022
 
-
 import sys
-
 
 class Node (object):
     # constructor
@@ -103,7 +101,6 @@ class Tree(object):
     # Returns a list of nodes at a given level from left to right
     def get_level(self, level):
         return self.get_level_helper(self.root, level)
-        pass
 
     def get_level_helper(self, aNode, level):
         if aNode == None:
@@ -130,6 +127,7 @@ class Tree(object):
                 level+=1
                 levellist = self.get_level(level)
         return(list)
+        
     # returns the sum of the value of all leaves.
     # a leaf node does not have any children.
     def sum_leaf_nodes(self):
@@ -141,20 +139,12 @@ class Tree(object):
         self.sum_leaf_nodes(self.root.lChild)
         self.sum_leaf_nodes(self.root.rChild)
         return totalSum
-        
-
-
-
-
-
-
 
 def make_tree(data):
     tree = Tree()
     for d in data:
         tree.insert(d)
     return tree
-
 
 # Develop your own main function or test cases to be able to develop.
 # Our tests on the Gradescop will import your classes and call the methods.
@@ -210,5 +200,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
