@@ -131,14 +131,17 @@ class Tree(object):
     # returns the sum of the value of all leaves.
     # a leaf node does not have any children.
     def sum_leaf_nodes(self):
-        totalSum = 0
-        if self.root == None: 
-            return 
-        if (self.root.lChild == None and self.root.rChild == None): 
-            totalSum += self.root.data 
-        self.sum_leaf_nodes(self.root.lChild)
-        self.sum_leaf_nodes(self.root.rChild)
-        return totalSum
+        return self.sum_leaf_nodes_helper(self.root)
+
+    def sum_leaf_nodes_helper(self, aNode):
+        if aNode.lChild == None and aNode.rChild == None:
+            return aNode.data
+        elif aNode.lChild == None:
+            return self.sum_leaf_nodes_helper(aNode.rChild)
+        elif aNode.rChild == None:
+            return self.sum_leaf_nodes_helper(aNode.lChild)
+        else:
+            return self.sum_leaf_nodes_helper(aNode.lChild) + self.sum_leaf_nodes_helper(aNode.rChild)
 
 def make_tree(data):
     tree = Tree()
