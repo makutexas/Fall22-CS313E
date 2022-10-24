@@ -106,9 +106,9 @@ class Tree(object):
         if aNode == None:
             return []
         elif level == 1:
-            return [aNode.data]
-        elif level == (self.get_height() + 1 - aNode.get_height()): #Calculates level from height, and compares to desired level
-            return [aNode.data] + self.get_level_helper(aNode.lChild, level) + self.get_level_helper(aNode.rChild, level)
+            return [aNode]
+        elif level == (self.get_height() - aNode.get_height()): #Calculates level from height, and compares to desired level
+            return [aNode] + self.get_level_helper(aNode.lChild, level) + self.get_level_helper(aNode.rChild, level)
         else:
             return self.get_level_helper(aNode.lChild, level) + self.get_level_helper(aNode.rChild, level)
 
@@ -119,11 +119,11 @@ class Tree(object):
         level = 1
         levellist = self.get_level(level)
         height = self.get_height()
-        for i in range(height): 
+        for i in range(height - 1): 
             if levellist == None: 
                 break
             if levellist != None: 
-                list.append(levellist[0]) 
+                list.append(levellist[0].data) 
                 level+=1
                 levellist = self.get_level(level)
         return(list)
