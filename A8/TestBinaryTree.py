@@ -105,7 +105,7 @@ class Tree(object):
     def get_level_helper(self, aNode, level):
         if aNode == None:
             return []
-        elif level == 1:
+        elif level == 0:
             return [aNode]
         elif level == (self.get_height() - aNode.get_height()): #Calculates level from height, and compares to desired level
             return [aNode] + self.get_level_helper(aNode.lChild, level) + self.get_level_helper(aNode.rChild, level)
@@ -115,18 +115,12 @@ class Tree(object):
     # Returns the list of the node that you see from left side
     # The order of the output should be from top to down
     def left_side_view(self):
-        list = [] 
-        level = 1
-        levellist = self.get_level(level)
-        height = self.get_height()
-        for i in range(height - 1): 
-            if levellist == None: 
-                break
-            if levellist != None: 
-                list.append(levellist[0].data) 
-                level+=1
-                levellist = self.get_level(level)
-        return(list)
+        left_side = []
+        for level in range (self.get_height()):
+            print([node.data for node in self.get_level(level)])
+            left_side.append(self.get_level(level)[0])
+
+        return [node.data for node in left_side]
         
     # returns the sum of the value of all leaves.
     # a leaf node does not have any children.
