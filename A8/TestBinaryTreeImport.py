@@ -1,10 +1,5 @@
 from TestBinaryTree import *
 
-tree = make_tree([98, 5, 6, 8, 76, 48, 19, 83, 86, 62, 56, 57, 30])
-
+tree = make_tree([14, 9, 5, 3, 20, 7, 12, 2, 40])
 tree.print(tree.get_height())
-
-print(tree.left_side_view())
-
-list = [node.data for node in tree.get_level(1)]
-print(list)
+print(tree.get_height())
