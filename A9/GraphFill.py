@@ -184,7 +184,7 @@ class ImageGraph:
 
         bfsQueue = Queue()
         currentNode = self.nodes[start_index]
-        
+
         while True:
           currentNode.visit_and_set_color(color)
           self.print_image()
@@ -250,7 +250,6 @@ def create_graph(data):
 
     return graph, search_start, search_color
 
-
 def main():
     # read input
     data = sys.stdin.read()
@@ -268,7 +267,6 @@ def main():
 
     # run dfs
     graph.dfs(search_start, search_color)
-
 
 if __name__ == "__main__":
     main()
