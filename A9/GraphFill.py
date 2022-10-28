@@ -1,13 +1,13 @@
 #  File: GraphFill.py
-#  Description:
-#  Student Name:
-#  Student UT EID:
+#  Description: GraphFill.py changes the color of nodes in a graph based on DFS and BFS
+#  Student Name: Mark Chao
+#  Student UT EID: mc72239
 #  Partner Name:
 #  Partner UT EID:
 #  Course Name: CS 313E
-#  Unique Number:
-#  Date Created:
-#  Date Last Modified:
+#  Unique Number: 52520
+#  Date Created: 10/28/2022
+#  Date Last Modified: 10/28/2022
 
 import os
 import sys
@@ -160,7 +160,13 @@ class ImageGraph:
     def print_adjacency_matrix(self):
         print("Adjacency matrix:")
 
-        raise NotImplementedError("Remove this exception and print the adjacency matrix here.")
+        adjMatrix = [[0 for i in range(len(self.nodes))] for j in range(len(self.nodes))]
+        for node in self.nodes:
+            for edge in node.edges:
+                adjMatrix[node.index][edge] = 1
+        for line in adjMatrix:
+            for i in range(len(line)):
+                print(line[i], end = "\n" if i == len(line) - 1 else '')
 
         # empty line afterwards
         print()
@@ -176,8 +182,19 @@ class ImageGraph:
         print("Starting BFS; initial state:")
         self.print_image()
 
-        raise NotImplementedError("Remove this exception and implement the bfs algorithm here.")
-
+        bfsQueue = Queue()
+        currentNode = self.nodes[start_index]
+        while True:
+          currentNode.visit_and_set_color(color)
+          self.print_image()
+          currentNode.visited = True
+          for edge in currentNode.edges:
+            if not self.nodes[edge].visited:
+              bfsQueue.enqueue(self.nodes[edge])
+          if bfsQueue.is_empty():
+            break
+          else:
+            currentNode = bfsQueue.dequeue()
 
     # implement your dfs algorithm here. Call print_image() after coloring a node
     # Input: graph is the graph containing the nodes
@@ -189,10 +206,7 @@ class ImageGraph:
         # print initial state
         print("Starting DFS; initial state:")
         self.print_image()
-
-        raise NotImplementedError("Remove this exception and implement the dfs algorithm here.")
-
-
+        
 def create_graph(data):
     # creates graph from read in data
     data_list = data.split("\n")

@@ -100,17 +100,21 @@ class Tree(object):
 
     # Returns a list of nodes at a given level from left to right
     def get_level(self, level):
-        return self.get_level_helper(self.root, level)
+        print("Checking level ", level)
+        return self.get_level_helper(self.root, 0, level)
 
-    def get_level_helper(self, aNode, level):
+    def get_level_helper(self, aNode, currentLevel, desiredLevel):
         if aNode == None:
+            # print("Node is None")
             return []
-        elif level == 0:
+        # print("Visiting node ", aNode.data, " with height ", aNode.get_height())
+        # print("Root is ", self.root.data)
+        elif desiredLevel == currentLevel: #Calculates level from height, and compares to desired level
+            # print("Adding ", aNode.data, " to level ", currentLevel)
             return [aNode]
-        elif level == (self.get_height() - aNode.get_height()): #Calculates level from height, and compares to desired level
-            return [aNode] + self.get_level_helper(aNode.lChild, level) + self.get_level_helper(aNode.rChild, level)
         else:
-            return self.get_level_helper(aNode.lChild, level) + self.get_level_helper(aNode.rChild, level)
+            # print("Recursing down node ", aNode.data)
+            return self.get_level_helper(aNode.lChild, currentLevel+1, desiredLevel) + self.get_level_helper(aNode.rChild, currentLevel+1, desiredLevel)
 
     # Returns the list of the node that you see from left side
     # The order of the output should be from top to down
