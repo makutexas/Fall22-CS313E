@@ -219,7 +219,6 @@ def create_graph(data):
     node_count = int(data_list[1])
 
     graph = ImageGraph(image_size)
-
     index = 2
 
     # create nodes
