@@ -184,6 +184,7 @@ class ImageGraph:
 
         bfsQueue = Queue()
         currentNode = self.nodes[start_index]
+        original_color = currentNode.color
 
         while True:
           currentNode.visit_and_set_color(color)
@@ -191,7 +192,7 @@ class ImageGraph:
           currentNode.visited = True
 
           for edge in currentNode.edges:
-            if not self.nodes[edge].visited: #Add to edges to queue if not visited
+            if not self.nodes[edge].visited and self.nodes[edge].color == original_color: #Add to edges to queue if not visited
               bfsQueue.enqueue(self.nodes[edge])
 
           if bfsQueue.is_empty(): #All nodes have been visited
