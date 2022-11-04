@@ -194,7 +194,7 @@ class ImageGraph:
           for edge in currentNode.edges:
             if not self.nodes[edge].visited and self.nodes[edge].color == original_color: #Add to edges to queue if not visited
               bfsQueue.enqueue(self.nodes[edge])
-
+              self.nodes[edge].visited = True
           if bfsQueue.is_empty(): #All nodes have been visited
             break
           else:
@@ -204,12 +204,32 @@ class ImageGraph:
     # Input: graph is the graph containing the nodes
     #   start_index is the index of the currently visited node
     #   color is the color to fill the area containing the current node with
+
+    #More readable + efficient
+    #Line 226, check if visited and same color 
     def dfs(self, start_index, color):
-        # reset visited status
+       # reset visited status
         self.reset_visited()
         # print initial state
         print("Starting DFS; initial state:")
         self.print_image()
+        currentStack = Stack()
+        currentNode = self.nodes[start_index]
+        original_color = currentNode.color
+
+        while True: 
+          currentNode.visit_and_set_color(color) 
+          self.print_image() 
+          currentNode.visited = True 
+
+          for edge in currentNode.edges: 
+            if not self.nodes[edge].visited and self.nodes[edge].color == original_color: #Similar, add unvisited to stack
+              currentStack.push(self.nodes[edge]) 
+              self.nodes[edge].visited = True
+          if currentStack.is_empty(): 
+            break
+          else:
+            currentNode = currentStack.pop()
         
 def create_graph(data):
     # creates graph from read in data
