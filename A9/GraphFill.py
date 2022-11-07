@@ -2,12 +2,12 @@
 #  Description: GraphFill.py changes the color of nodes in a graph based on DFS and BFS
 #  Student Name: Mark Chao
 #  Student UT EID: mc72239
-#  Partner Name:
-#  Partner UT EID:
+#  Partner Name: Benjamin Ton-That
+#  Partner UT EID: bbt426
 #  Course Name: CS 313E
 #  Unique Number: 52520
 #  Date Created: 10/28/2022
-#  Date Last Modified: 10/28/2022
+#  Date Last Modified: 11/7/2022
 
 import os
 import sys
