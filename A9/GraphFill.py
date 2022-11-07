@@ -217,15 +217,14 @@ class ImageGraph:
         currentNode = self.nodes[start_index]
         original_color = currentNode.color
 
-        while True: 
-          currentNode.visit_and_set_color(color) 
-          self.print_image() 
-          currentNode.visited = True 
+        while True:
+          if currentNode.visited == False:
+            currentNode.visit_and_set_color(color) 
+            self.print_image() 
 
           for edge in currentNode.edges: 
-            if not self.nodes[edge].visited and self.nodes[edge].color == original_color: #Similar, add unvisited to stack
+            if self.nodes[edge].color == original_color: #Similar, add unvisited to stack
               currentStack.push(self.nodes[edge]) 
-              self.nodes[edge].visited = True
           if currentStack.is_empty(): 
             break
           else:
