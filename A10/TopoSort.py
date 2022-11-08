@@ -196,9 +196,11 @@ class Graph(object):
         # this function should return a boolean and not print the result
 
     def has_cycle(self):
-# ...
-
-
+        nVert = len(self.Vertices)
+        for i in range(nVert):
+            if self.dfs(i):
+                return True
+        return False
 
 
     # do the breadth first search in a graph
