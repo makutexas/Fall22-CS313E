@@ -1,6 +1,5 @@
 import sys
 
-
 class Stack(object):
     def __init__(self):
         self.stack = []
@@ -31,7 +30,6 @@ class Stack(object):
     def __str__(self):
         return self.stack
 
-
 class Queue(object):
     def __init__(self):
         self.queue = []
@@ -55,7 +53,6 @@ class Queue(object):
     def size(self):
         return (len(self.queue))
 
-
 class Vertex(object):
     def __init__(self, label):
         self.label = label
@@ -72,7 +69,6 @@ class Vertex(object):
     # string representation of the vertex
     def __str__(self):
         return str(self.label)
-
 
 class Graph(object):
     def __init__(self):
@@ -202,7 +198,6 @@ class Graph(object):
                 return True
         return False
 
-
     # do the breadth first search in a graph
     def bfs(self, v):
         theQueue = Queue()
@@ -252,9 +247,25 @@ class Graph(object):
     # this function should not print the list
     def toposort(self):
         topoList = []
+        zero_incoming_edges = []
+        
+        while len(self.Vertices) != 0:
+            for i in range(len(self.Vertices)):
+                addEdge = True
+                for j in range(len(self.Vertices)):
+                    if self.adjMat[j][i] > 0:
+                        addEdge = False
+                        break
+                if addEdge:
+                    zero_incoming_edges.append(self.Vertices[i].label)
+            
+            zero_incoming_edges.sort()
 
-# Complete it!
-
+            for item in zero_incoming_edges:
+                topoList.append(item)
+                self.delete_vertex(item)
+            zero_incoming_edges = []
+        
         return topoList
 
     # given a label get the index of a vertex
@@ -273,7 +284,6 @@ class Graph(object):
             row.pop(idx)
         adjMatCopy.pop(idx)
         VerticesCopy.pop(idx)
-
 
 def main():
     # create a Graph object
