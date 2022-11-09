@@ -257,13 +257,13 @@ class Graph(object):
     # this function should not print the list
     def toposort(self):
         topoList = []
-        zero_incoming_edges = []
 
         #Copy of graph
         copy_adjMat = copy.deepcopy(self.adjMat)
         copy_vertices = copy.deepcopy(self.Vertices)
 
         while len(self.Vertices) != 0:
+            zero_incoming_edges = []
             for i in range(len(self.Vertices)): #Find all vertices with 0 incoming edges
                 addEdge = True
                 for j in range(len(self.Vertices)):
@@ -278,7 +278,6 @@ class Graph(object):
             for item in zero_incoming_edges: 
                 topoList.append(item)
                 self.delete_vertex(item)
-            zero_incoming_edges = []
         
         #Reset the graph
         self.adjMat = copy_adjMat
