@@ -1,3 +1,12 @@
+#  File: TopoSort.py
+#  Description: TopoSort.py sorts a graph using topological sort
+#  Student Name: Mark Chao
+#  Student UT EID: mc72239
+#  Course Name: CS 313E
+#  Unique Number: 52520
+#  Date Created: 11/8/2022
+#  Date Last Modified: 11/8/2022
+
 import sys
 
 class Stack(object):
