@@ -7,6 +7,7 @@
 #  Date Created: 11/8/2022
 #  Date Last Modified: 11/8/2022
 
+import copy
 import sys
 
 class Stack(object):
@@ -257,23 +258,31 @@ class Graph(object):
     def toposort(self):
         topoList = []
         zero_incoming_edges = []
-        
+
+        #Copy of graph
+        copy_adjMat = copy.deepcopy(self.adjMat)
+        copy_vertices = copy.deepcopy(self.Vertices)
+
         while len(self.Vertices) != 0:
-            for i in range(len(self.Vertices)):
+            for i in range(len(self.Vertices)): #Find all vertices with 0 incoming edges
                 addEdge = True
                 for j in range(len(self.Vertices)):
-                    if self.adjMat[j][i] > 0:
+                    if self.adjMat[j][i] > 0: #Checks for incoming edges to vertex i
                         addEdge = False
                         break
                 if addEdge:
-                    zero_incoming_edges.append(self.Vertices[i].label)
+                    zero_incoming_edges.append(self.Vertices[i].label) #Adds label of vertex
             
             zero_incoming_edges.sort()
 
-            for item in zero_incoming_edges:
+            for item in zero_incoming_edges: 
                 topoList.append(item)
                 self.delete_vertex(item)
             zero_incoming_edges = []
+        
+        #Reset the graph
+        self.adjMat = copy_adjMat
+        self.Vertices = copy_vertices
         
         return topoList
 
