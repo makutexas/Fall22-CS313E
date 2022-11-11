@@ -265,12 +265,12 @@ class Graph(object):
         while len(self.Vertices) != 0:
             zero_incoming_edges = []
             for i in range(len(self.Vertices)): #Find all vertices with 0 incoming edges
-                addEdge = True
+                addVertex = True
                 for j in range(len(self.Vertices)):
                     if self.adjMat[j][i] > 0: #Checks for incoming edges to vertex i
-                        addEdge = False
+                        addVertex = False
                         break
-                if addEdge:
+                if addVertex:
                     zero_incoming_edges.append(self.Vertices[i].label) #Adds label of vertex
             
             zero_incoming_edges.sort()
