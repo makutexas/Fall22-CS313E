@@ -1,7 +1,34 @@
+#  File: TopoSort.py
+#  Description: TopoSort.py sorts a graph using topological sort
+#  Student Name: Mark Chao
+#  Student UT EID: mc72239
+#  Course Name: CS 313E
+#  Unique Number: 52520
+#  Date Created: 11/26/2022
+#  Date Last Modified: 11/26/2022
+
 import sys
 
 # Add Your functions here
 
+def max_profit(money, num_houses, prices, increase):
+
+    net_profit = [0] + [(prices[i]*(increase[i] * 0.01)) for i in range(num_houses)]
+    prices = [0] + prices
+
+    dp = [[0 for i in range(money+1)] for j in range(num_houses + 1)]
+
+    for item in range(1, num_houses + 1):
+        for weight in range(money+1):
+            if prices[item] <= weight:
+                dp[item][weight] = max(dp[item-1][weight], net_profit[item] + dp[item-1][weight-prices[item]])
+            else:
+                dp[item][weight] = dp[item-1][weight]
+    
+    # for i in range(num_houses + 1):
+    #     print(dp[i])
+
+    return dp[num_houses][money]
 
 # You are allowed to change the main function. 
 
@@ -37,14 +64,12 @@ def main():
     for i in range(0, len(increase)):
         increase[i] = float(increase[i])
 
-
-
 # Add your implementation here .... 
-    result =  ... 
+    result =  max_profit(money, num_houses, prices, increase)
 
 # Add your functions and call them to generate the result. 
 
-    print(result)
+    print("%.2f" % result)
 
     
 
